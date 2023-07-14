@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bacasime+Antique&family=Pangolin&display=swap" rel="stylesheet">
+    <title>Clicker</title>
+    <style>
+        *
+        {
+            color: white;
+        }
+        body
+        {
+            padding: 0px;
+            margin: 0px;
+            background-color: black;
+        }
+        #Container
+        {
+            background-color: black;
+            cursor: pointer;
+            width: 100vw;
+            border: none;
+            height: 50vh;
+            font-size: 100px;
+            font-family: 'Bacasime Antique', serif;
+font-family: 'Pangolin', cursive;
+/* box-shadow: 5px 5px 5px white; */
+        }
+        .ColorChanging
+        {
+            transition: 2ms;
+            background-color: rgb(181, 244, 244);
+        }
+        .HeadExtra
+        {
+           text-align: center;
+           margin-top: 10rem;
+        }
+        #Timer
+        {
+            margin-left: 3rem;
+        }
+        .Extra
+        {
+            font-size: 3rem;
+        }
+        #dis
+        {
+            font-size: 5rem;
+        }
+        #Try
+        {
+            border: none;
+            cursor: pointer;
+            background-color: black;
+            margin-left: 3rem;
+            font-size: 2rem;
+        }
+        #Try:hover
+        {
+            color: grey;
+        }
+        @media(max-width:678px)
+        {
+            .Extra
+        {
+            font-size: 2rem;
+        }
+        #Try
+        {
+            font-size: 1.7rem;
+        }
+        #dis
+        {
+            font-size: 3rem;
+        }
+        }
+        @media(max-width:515px)
+        {
+            .Extra
+        {
+            font-size: 1.5rem;
+        }
+        #Try
+        {
+            font-size: 1rem;
+            margin-left: 1rem;
+        }
+        #dis
+        {
+            font-size: 2rem;
+        }
+        #Timer
+        {
+            margin-left: 1rem;
+        }
+        }
+    </style>
+</head>
+<body>
+<button id="Container" onclick="FCounter();add()" >Click Here</button>
+<div class="HeadExtra">
+    <span class="Extra" id="Counter">Count: 0</span>
+    <span class="Extra" id="Timer">Timer: 60 sec</span>
+    <button id="Try" onclick="Tryagain()">Try Again</button>
+    <p id="dis">Click on the "Click Here" to Start</p>
+
+</div>
+</body>
+<script>
+    let c=0;
+    let T=60;
+    var Timerx=null;
+    let Counter=document.getElementById("Counter");
+    let Timer=document.getElementById("Timer");
+    // Counter Starts here
+    function FCounter()
+    {
+        c++;
+        Counter.innerText="Count: "+c;
+    }
+    // Counter Ends here
+    var x=1;
+    function add()
+    {
+        if(x==1)
+        {
+            STimer();
+        }
+        x=2;
+    }
+    
+    function FTimer()
+    {
+         T-=1;
+       Timer.innerText="Timer: "+T+" sec"
+       if(T==0)
+       {
+        Container.disabled=true;
+        dis.innerText="Your Score is "+c;
+        clearInterval(Timerx);
+       }
+    }
+    function STimer()
+    {
+        Timerx=setInterval(FTimer,1000);
+    }
+    function Tryagain()
+    {
+        Container.disabled=false;
+        dis.innerText=`Click on the "Click Here" to Start`;
+        clearInterval(Timerx);
+        c=0;
+        Timer.innerText="Timer: 60 sec"
+        Counter.innerText="Count: "+c;
+        T=60;
+        x=1;
+    }
+</script>
+</html>
